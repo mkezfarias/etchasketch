@@ -9,14 +9,12 @@ window.onload = function() {
     var div0 = document.getElementById('div0');
     div0.appendChild(form);
     form.appendChild(input);
-    //form.appendChild(button);
     input.setAttribute('type','text');
     input.setAttribute('id','input');
-    //input.setAttribute('oninput',update());
     input.setAttribute('type','type');
     input.addEventListener("input", update);
     function update() {
-        //var input2 = document.getElementById('input');
+    document.getElementById('container').innerHTML = ''
         var x = input.value
         if (x >= 1) {
             layoutGrid(x);
@@ -28,10 +26,6 @@ window.onload = function() {
             }
             
     }
-
-    //button.setAttribute('id','button');
-    // button.setAttribute('onclick',update())    
-    //button.innerHTML= 'update'
 }
 
 const layoutGrid = (x) => {
@@ -43,26 +37,22 @@ const layoutGrid = (x) => {
     container.style.display = 'grid'
     container.style.height = '500px'
     container.style.width = '500px' 
-    fillGrid(x);
 }
 
 const fillGrid = (x) => {
     let input = document.querySelector('input');
     let inputValue = input.value;
-    let gridSize = x**2 //inputValue*inputValue
+    let gridSize = x*x //inputValue*inputValue
     var i; 
-    for (i=0; i<=gridSize; i++) {
-        var container = document.getElementById('container')
+    var container = document.getElementById('container')
+    for (i=0; i<gridSize; i++) {
         var node = document.createElement('div');
         node.setAttribute('id', `gridbox${i}`)
-        node.style.backgroundColor = `${getRandomColor()}`;
+        node.setAttribute('class', 'gridboxchild')
+        node.style.backgroundColor = 'white'
+        node.style.boxShadow = '0px 0px 0px 1px black inset';
         container.appendChild(node)
-      //  let gridBoxes = `<div class='grid-element' id="box${i}"
-      //                        style="background-color: ;
-      //                               border: 1px black solid;></div>`
-      container.appendChild(node) 
     }
-
 }
 function getRandomColor(){
     var letters = '0123456789ABCDEF';
@@ -73,13 +63,13 @@ function getRandomColor(){
     return color;
  }
 
-
-
-
-
-
- /*
-addBoxes();
-createGrid();
-layoutGrid();
-*/
+  /*
+ const buttons = document.querySelectorAll("div");
+ buttons.forEach((button) => {
+     button.addEventListener('click', () => {
+         console.log(button);
+       //  node.style.backgroundColor = `${getRandomColor()}`
+        });
+     });
+ }
+     */
